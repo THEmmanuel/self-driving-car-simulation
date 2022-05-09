@@ -26,20 +26,28 @@ class Car {
 		}
 		//Reverse, negative here means reverse.
 		if (this.speed < -this.maxSpeed / 2) {
-			this.speed = -this.maxSpeed/2;
+			this.speed = -this.maxSpeed / 2;
 		}
-		
+
 		// Friction increases and decreases based on speed
 		if (this.speed > 0) {
-			this.speed -= this.friction; 
+			this.speed -= this.friction;
 		}
 		if (this.speed < 0) {
 			this.speed += this.friction;
 		}
 
 		//Set the value of speed to 0 if it's less than the friction and has an absoliute value to stop the car completely
-		if (Math.abs(this.speed)<this.friction) {
+		if (Math.abs(this.speed) < this.friction) {
 			this.speed = 0;
+		}
+
+		if (this.controls.left) {
+			this.x -= 2
+		}
+
+		if (this.controls.right) {
+			this.x += 2
 		}
 
 		this.y -= this.speed
