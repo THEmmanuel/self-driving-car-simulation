@@ -28,7 +28,6 @@ class Controls {
 					this.backward = true
 					break;
 			}
-			console.table(this)
 		}
 
 		document.onkeyup = event => {
@@ -49,7 +48,6 @@ class Controls {
 					this.backward = false
 					break;
 			}
-			console.table(this)
 		}
 	}
 }
