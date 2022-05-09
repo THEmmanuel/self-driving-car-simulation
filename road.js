@@ -20,16 +20,13 @@ class Road {
 			const x = linearInterpolation(
 				this.left,
 				this.right,
-				i / this.laneCount
+				index / this.laneCount
 			);
+
 			context.beginPath();
-			context.moveTo(this.left, this.top)
-			context.lineTo(this.left, this.bottom);
+			context.moveTo(x, this.top)
+			context.lineTo(x, this.bottom);
 			context.stroke();
 		}
 	}
-}
-
-const linearInterpolation = (A, B, t) => {
-	return A + (B - A) * t;
 }
