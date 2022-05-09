@@ -27,10 +27,29 @@ class Controls {
 				case 'ArrowDown':
 					this.backward = true
 					break;
+			}
+			console.table(this)
+		}
 
-				default:
+		document.onkeyup = event => {
+			switch (event.key) {
+				case 'ArrowLeft':
+					this.left = false
+					break;
+
+				case 'ArrowRight':
+					this.right = false
+					break;
+
+				case 'ArrowUp':
+					this.forward = false
+					break;
+
+				case 'ArrowDown':
+					this.backward = false
 					break;
 			}
+			console.table(this)
 		}
 	}
 }
