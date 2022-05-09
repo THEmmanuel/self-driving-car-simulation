@@ -13,14 +13,16 @@ class Car {
 
 		this.angle = 0;
 
+		this.sensor = new Sensor(this);
 		this.controls = new Controls()
 	}
 
-	update() {
-		this.#Move()
+	update(roadBorders) {
+		this.#move()
+		this.sensor.update(roadBorders);
 	}
 
-	#Move() {
+	#move() {
 		if (this.controls.forward) {
 			this.speed += this.accelaraion;
 		}
@@ -79,5 +81,7 @@ class Car {
 		);
 		context.fill();
 		context.restore();
+
+		this.sensor.draw(context);
 	}
 }
