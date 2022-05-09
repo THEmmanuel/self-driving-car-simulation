@@ -7,3 +7,12 @@ const context = canvas.getContext('2d');
 //get car
 const car = new Car(100, 100, 30, 50);
 car.draw(context);
+
+animate();
+
+const animate = () => {
+	car.update();
+	car.draw(context)
+	//Calls the animate 
+	requestAnimationFrame(animate)
+}
