@@ -11,6 +11,8 @@ class Car {
 		this.maxSpeed = 3;
 		this.friction = 0.05;
 
+		this.angle = 0;
+
 		this.controls = new Controls()
 	}
 
@@ -43,25 +45,29 @@ class Car {
 		}
 
 		if (this.controls.left) {
-			this.x -= 2
+			this.angle += 0.03
 		}
 
 		if (this.controls.right) {
-			this.x += 2
+			this.angle -= 0.03
 		}
 
 		this.y -= this.speed
 	}
 
 	draw(context) {
+		context.save();
+		context.translate(this.x, this.y)
+		context.rotate(-this.angle)
 		context.beginPath();
 		context.rect(
 			//Sets x to center
-			this.x - this.width / 2,
-			this.y - this.height / 2,
+			-this.width / 2,
+			-this.height / 2,
 			this.width,
 			this.height
 		);
 		context.fill();
+		context.restore();
 	}
 }
