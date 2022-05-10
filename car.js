@@ -19,13 +19,15 @@ class Car {
 	}
 
 	update(roadBorders) {
-		this.#move();
-		this.polygon = this.#createPolygon();
-		this.damaged = this.#accessDamage(roadBorders);
+		if (!this.damaged) {
+			this.#move();
+			this.polygon = this.#createPolygon();
+			this.damaged = this.#accessDamage(roadBorders);
+		}
 		this.sensor.update(roadBorders);
 	}
 
-	#accessDamage(roadBorders){
+	#accessDamage(roadBorders) {
 		for (let index = 0; index < roadBorders.length; index++) {
 			if (polygonIntersect(this.polygon, roadBorders[index])) {
 				return true
@@ -108,7 +110,7 @@ class Car {
 	draw(context) {
 		if (this.damaged) {
 			context.fillStyle = 'gray';
-		}else{
+		} else {
 			context.fillStyle = 'black'
 		}
 
@@ -116,7 +118,7 @@ class Car {
 		context.beginPath();
 		context.moveTo(this.polygon[0].x, this.polygon[0].y);
 		for (let index = 1; index < this.polygon.length; index++) {
-			context.lineTo(this.polygon[index].x, this.polygon[index].y)		
+			context.lineTo(this.polygon[index].x, this.polygon[index].y)
 		}
 		context.fill();
 
