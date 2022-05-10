@@ -116,11 +116,11 @@ class Car {
 		}
 	}
 
-	draw(context) {
+	draw(context, color) {
 		if (this.damaged) {
 			context.fillStyle = 'gray';
 		} else {
-			context.fillStyle = 'black'
+			context.fillStyle = color
 		}
 
 

@@ -24,9 +24,9 @@ const animate = () => {
 
 	road.draw(context);
 	for (let index = 0; index < traffic.length; index++) {
-		traffic[index].draw(context);
+		traffic[index].draw(context, 'red');
 	}
-	car.draw(context);
+	car.draw(context, 'blue');
 
 	context.restore();
 	//Calls the animate 
