@@ -13,8 +13,9 @@ class Car {
 
 		this.angle = 0;
 		this.damaged = false;
-
-		this.sensor = new Sensor(this);
+		if (controlType != 'NO_KEYS') {
+			this.sensor = new Sensor(this)
+		}
 		this.controls = new Controls(controlType)
 	}
 
@@ -24,7 +25,9 @@ class Car {
 			this.polygon = this.#createPolygon();
 			this.damaged = this.#accessDamage(roadBorders);
 		}
-		this.sensor.update(roadBorders);
+		if (this.sensor) {
+			this.sensor.update(roadBorders);
+		}
 	}
 
 	#accessDamage(roadBorders) {
@@ -122,6 +125,8 @@ class Car {
 		}
 		context.fill();
 
-		this.sensor.draw(context);
+		if (this.sensor) {
+			this.sensor.draw(context);			
+		}
 	}
 }
