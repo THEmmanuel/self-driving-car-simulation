@@ -12,6 +12,7 @@ class Car {
 		this.friction = 0.05;
 
 		this.angle = 0;
+		this.damaged = false;
 
 		this.sensor = new Sensor(this);
 		this.controls = new Controls()
@@ -20,7 +21,17 @@ class Car {
 	update(roadBorders) {
 		this.#move();
 		this.polygon = this.#createPolygon();
+		this.damaged = this.#accessDamage(roadBorders);
 		this.sensor.update(roadBorders);
+	}
+
+	#accessDamage(roadBorders){
+		for (let index = 0; index < roadBorders.length; index++) {
+			if (polygonIntersect(this.polygon, roadBorders[i])) {
+				return true
+			}
+		}
+		return false;
 	}
 
 	#createPolygon() {
