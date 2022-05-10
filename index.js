@@ -6,9 +6,9 @@ const context = canvas.getContext('2d');
 //get road
 const road = new Road(canvas.width / 2, canvas.width * 0.9);
 //get car
-const car = new Car(road.getLaneCenter(1), 100, 30, 50);
+const car = new Car(road.getLaneCenter(1), 100, 30, 50, 'KEYS');
 const traffic = [
-	new Car(road.getLaneCenter(1), -100, 30, 50)
+	new Car(road.getLaneCenter(1), -100, 30, 50, 'NO_KEYS')
 ];
 
 const animate = () => {
