@@ -27,7 +27,7 @@ class Car {
 
 	#accessDamage(roadBorders){
 		for (let index = 0; index < roadBorders.length; index++) {
-			if (polygonIntersect(this.polygon, roadBorders[i])) {
+			if (polygonIntersect(this.polygon, roadBorders[index])) {
 				return true
 			}
 		}
@@ -106,6 +106,13 @@ class Car {
 	}
 
 	draw(context) {
+		if (this.damaged) {
+			context.fillStyle = 'gray';
+		}else{
+			context.fillStyle = 'black'
+		}
+
+
 		context.beginPath();
 		context.moveTo(this.polygon[0].x, this.polygon[0].y);
 		for (let index = 1; index < this.polygon.length; index++) {
