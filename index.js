@@ -13,9 +13,9 @@ const traffic = [
 
 const animate = () => {
 	for (let index = 0; index < traffic.length; index++) {
-		traffic[index].update(road.borders);
+		traffic[index].update(road.borders, []);
 	}
-	car.update(road.borders);
+	car.update(road.borders, traffic);
 
 	canvas.height = window.innerHeight;
 	context.save();
