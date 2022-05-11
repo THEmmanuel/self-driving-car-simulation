@@ -37,6 +37,8 @@ const animate = () => {
 	car.draw(carContext, 'blue');
 
 	carContext.restore();
+
+	Visualizer.drawNetwork(networkContext, car.brain);
 	//Calls the animate 
 	requestAnimationFrame(animate);
 }
