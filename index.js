@@ -12,12 +12,12 @@ const networkContext = networkCanvas.getContext('2d');
 //get road
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 //get car
-const car = new Car(road.getLaneCenter(1), 100, 30, 50, 'KEYS');
+const car = new Car(road.getLaneCenter(1), 100, 30, 50, 'AI');
 const traffic = [
 	new Car(road.getLaneCenter(1), -100, 30, 50, 'NO_KEYS', 2)
 ];
 
-const animate = () => {
+const animate = (time) => {
 	for (let index = 0; index < traffic.length; index++) {
 		traffic[index].update(road.borders, []);
 	}
@@ -37,6 +37,8 @@ const animate = () => {
 	car.draw(carContext, 'blue');
 
 	carContext.restore();
+
+	networkContext.lineDashOffset = -time/50;
 
 	Visualizer.drawNetwork(networkContext, car.brain);
 	//Calls the animate 
