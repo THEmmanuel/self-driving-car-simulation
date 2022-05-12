@@ -34,17 +34,17 @@ const polygonIntersect = (polygon1, polygon2) => {
 			if (touch) {
 				return true;
 			}
-		}	
+		}
 	}
 	return false
 }
 
+const getRGBA = (value) => {
+	const alpha = Math.abs(value);
 
-const value = weights[i][j]
-				const alpha = Math.abs(value);
+	const R = value < 0 ? 0 : 255;
+	const G = R;
+	const B = value > 0 ? 0 : 255;
 
-				const R = value < 0 ? 0 : 255;
-				const G = R;
-				const B = value > 0 ? 0 : 255;
-
-				context.strokeStyle = 'rgba(' + R + ', ' + G + ', ' + B + ', ' + alpha + ')';
+	return 'rgba(' + R + ', ' + G + ', ' + B + ', ' + alpha + ')';
+}

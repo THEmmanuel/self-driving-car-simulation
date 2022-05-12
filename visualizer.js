@@ -34,14 +34,8 @@ class Visualizer {
 					top
 				);
 				context.lineWidth = 2;
-				const value = weights[i][j]
-				const alpha = Math.abs(value);
-
-				const R = value < 0 ? 0 : 255;
-				const G = R;
-				const B = value > 0 ? 0 : 255;
-
-				context.strokeStyle = 'rgba(' + R + ', ' + G + ', ' + B + ', ' + alpha + ')';
+				const value = weights[i][j];
+				context.strokeStyle = getRGBA(weights[i][j])
 				context.stroke()
 			}
 		}
@@ -50,7 +44,7 @@ class Visualizer {
 		for (let i = 0; i < inputs.length; i++) {
 			const x = Visualizer.#getNodeX(inputs, i, left, right)
 			context.beginPath();
-			context.arc(x, bottom, nodeRadius, 0, Math.PI * 2);
+			context.arc(x, bottom, nodeRadius * 0.6, 0,  Math.PI * 2);
 			context.fillStyle = 'white';
 			context.fill();
 		}
@@ -58,14 +52,15 @@ class Visualizer {
 		for (let i = 0; i < outputs.length; i++) {
 			const x = Visualizer.#getNodeX(outputs, i, left, right);
 			context.beginPath();
-			context.arc(x, top, nodeRadius, 0, Math.PI * 2);
+			context.arc(x, top, nodeRadius * 0.6, 0,  Math.PI * 2);
 			context.fillStyle = 'white';
 			context.fill();
 
 			context.beginPath();
 			context.lineWidth = 2;
 			context.arc(x, top, nodeRadius, 0, Math.PI * 2);
-			context.
+			context.strokeStyle = getRGBA(biases[i]);
+			context.stroke();
 		}
 	}
 
