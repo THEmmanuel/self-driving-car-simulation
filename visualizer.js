@@ -16,14 +16,15 @@ class Visualizer {
 		const right = left + width;
 		const bottom = top + height;
 
+		const {inputs, outputs} = level
 		const nodeRadius = 18;
-		for (let i = 0; i < level.inputs.length; i++) {
+		for (let i = 0; i < inputs.length; i++) {
 			const x = linearInterpolation(
 				left,
 				right,
-				level.inputs.length === 1
+				inputs.length === 1
 					? 0.5
-					: i/(level.inputs.length - 1)
+					: i/(inputs.length - 1)
 			);
 			context.beginPath();
 			context.arc(x, bottom, nodeRadius, 0, Math.PI * 2);
