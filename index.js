@@ -35,27 +35,36 @@ const animate = (time) => {
 
 	}
 
+	// Create a new array with the cars' y value
+	const bestCar = cars.find(
+		c => c.y === Math.min(
+			...cars.map(c => c.y)
+		));
+
 	carCanvas.height = window.innerHeight;
 	networkCanvas.height = window.innerHeight;
 
 	carContext.save();
 
-	carContext.translate(0, -cars[0].y + carCanvas.height * 0.7);
+	carContext.translate(0, -bestCar.y + carCanvas.height * 0.7);
 
 	road.draw(carContext);
 	for (let index = 0; index < traffic.length; index++) {
 		traffic[index].draw(carContext, 'red');
 	}
 
+	carContext.globalAlpha = 0.2;
 	for (let i = 0; i < cars.length; i++) {
 		cars[i].draw(carContext, 'blue');
 	}
+	carContext.globalAlpha = 1;
+	bestCar.draw(carContext, 'blue', true);
 
 	carContext.restore();
 
 	networkContext.lineDashOffset = -time / 50;
 
-	Visualizer.drawNetwork(networkContext, cars[0].brain);
+	Visualizer.drawNetwork(networkContext, bestCar.brain);
 	//Calls the animate 
 	requestAnimationFrame(animate);
 }
