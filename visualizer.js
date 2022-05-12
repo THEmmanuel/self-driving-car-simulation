@@ -18,36 +18,10 @@ class Visualizer {
 
 		const {
 			inputs,
-			outputs
+			outputs,
+			weights,
+			biases
 		} = level
-		const nodeRadius = 18;
-		for (let i = 0; i < inputs.length; i++) {
-			const x = linearInterpolation(
-				left,
-				right,
-				inputs.length === 1 ?
-				0.5 :
-				i / (inputs.length - 1)
-			);
-			context.beginPath();
-			context.arc(x, bottom, nodeRadius, 0, Math.PI * 2);
-			context.fillStyle = 'white';
-			context.fill();
-		}
-
-		for (let i = 0; i < outputs.length; i++) {
-			const x = linearInterpolation(
-				left,
-				right,
-				outputs.length === 1 ?
-				0.5 :
-				i / (outputs.length - 1)
-			);
-			context.beginPath();
-			context.arc(x, top, nodeRadius, 0, Math.PI * 2);
-			context.fillStyle = 'white';
-			context.fill();
-		}
 
 		for (let i = 0; i < inputs.length; i++) {
 			for (let j = 0; j < outputs.length; j++) {
@@ -60,9 +34,38 @@ class Visualizer {
 					top
 				);
 				context.lineWidth = 2;
-				context.strokeStyle = 'orange';
+				const value = weights[i][j]
+				const alpha = Math.abs(value);
+
+				const R = value < 0 ? 0 : 255;
+				const G = R;
+				const B = value > 0 ? 0 : 255;
+
+				context.strokeStyle = 'rgba(' + R + ', ' + G + ', ' + B + ', ' + alpha + ')';
 				context.stroke()
 			}
+		}
+
+		const nodeRadius = 18;
+		for (let i = 0; i < inputs.length; i++) {
+			const x = Visualizer.#getNodeX(inputs, i, left, right)
+			context.beginPath();
+			context.arc(x, bottom, nodeRadius, 0, Math.PI * 2);
+			context.fillStyle = 'white';
+			context.fill();
+		}
+
+		for (let i = 0; i < outputs.length; i++) {
+			const x = Visualizer.#getNodeX(outputs, i, left, right);
+			context.beginPath();
+			context.arc(x, top, nodeRadius, 0, Math.PI * 2);
+			context.fillStyle = 'white';
+			context.fill();
+
+			context.beginPath();
+			context.lineWidth = 2;
+			context.arc(x, top, nodeRadius, 0, Math.PI * 2);
+			context.
 		}
 	}
 
