@@ -1,5 +1,5 @@
 class Car {
-	constructor(x, y, width, height, controlType, maxSpeed = 3) {
+	constructor(x, y, width, height, controlType, maxSpeed = 5) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -23,6 +23,9 @@ class Car {
 			);
 		}
 		this.controls = new Controls(controlType)
+
+		this.img = new Image();
+		this.img.src = 'car.png'
 	}
 
 	update(roadBorders, traffic) {
@@ -38,7 +41,7 @@ class Car {
 			)
 			const outputs = NeuralNetwork.feedForward(offsets, this.brain)
 
-			if (this.useBrain){
+			if (this.useBrain) {
 				this.controls.forward = outputs[0];
 				this.controls.left = outputs[1];
 				this.controls.right = outputs[2];
@@ -134,22 +137,19 @@ class Car {
 	}
 
 	draw(context, color, drawSensor = false) {
-		if (this.damaged) {
-			context.fillStyle = 'gray';
-		} else {
-			context.fillStyle = color
-		}
+		context.save();
+		context.translate(this.x, this.y);
+		context.rotate(-this.angle)
+		context.drawImage(this.img,
+			-this.width / 2,
+			-this.height / 2,
+			this.width,
+			this.height);
 
-
-		context.beginPath();
-		context.moveTo(this.polygon[0].x, this.polygon[0].y);
-		for (let index = 1; index < this.polygon.length; index++) {
-			context.lineTo(this.polygon[index].x, this.polygon[index].y)
-		}
-		context.fill();
+		context.restore()
 
 		if (this.sensor && drawSensor) {
-			this.sensor.draw(context);			
+			this.sensor.draw(context);
 		}
 	}
 }

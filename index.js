@@ -2,7 +2,7 @@ const carCanvas = document.getElementById('carCanvas')
 carCanvas.width = 200;
 
 const networkCanvas = document.getElementById('networkCanvas')
-networkCanvas.width = 300;
+networkCanvas.width = 600;
 
 const generateCars = (n) => {
 	const cars = [];
@@ -20,7 +20,7 @@ const networkContext = networkCanvas.getContext('2d');
 //get road
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 //get car
-const N = 100;
+const N = 500;
 const cars = generateCars(N);
 let bestCar = cars[0];
 if (localStorage.getItem('bestBrain')) {
