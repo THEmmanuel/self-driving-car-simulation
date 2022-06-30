@@ -25,7 +25,7 @@ class Car {
 		this.controls = new Controls(controlType)
 
 		this.img = new Image();
-		this.img.src = 'car.png'
+		this.img.src = 'car2.png'
 	}
 
 	update(roadBorders, traffic) {
